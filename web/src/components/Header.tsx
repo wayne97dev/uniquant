@@ -22,6 +22,7 @@ export function Header() {
           <nav className="hidden sm:flex gap-7">
             <a href="#genesis" className="nav-link">genesis</a>
             <a href="#mine" className="nav-link">mine</a>
+            <a href="/quantum" className="nav-link">quantum</a>
             <a href="/whitepaper" className="nav-link">whitepaper</a>
             <a
               href="https://x.com/Uniquantagent8004"

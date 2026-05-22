@@ -13,9 +13,9 @@
   --fg:              #ededed;
   --fg-muted:        #8a8a92;
   --fg-dim:          #5a5a62;
-  --accent:          #ffffff;
-  --accent-bright:   #ffffff;
-  --accent-glow:     rgba(255, 255, 255, 0.18);
+  --accent:          #9b87ff;
+  --accent-bright:   #5fe9ff;
+  --accent-glow:     rgba(124, 92, 255, 0.22);
   --accent-dim:      #5a5a62;
   --danger:          #ef4444;
   --danger-glow:     rgba(239, 68, 68, 0.18);
@@ -35,8 +35,8 @@ body::before {
   position: fixed; inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at top, rgba(244, 196, 48, 0.04), transparent 60%),
-    radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.015), transparent 70%);
+    radial-gradient(ellipse at top, rgba(124, 92, 255, 0.06), transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(95, 233, 255, 0.03), transparent 70%);
   z-index: -1;
 }
 
@@ -65,6 +65,18 @@ body::before {
 }
 .scroll-thin::-webkit-scrollbar-thumb:hover {
   background: var(--border-bright);
+}
+
+/* Gentle idle float for the static (no-WebGL) hero agent portrait. */
+@keyframes uq-float {
+  0%, 100% { transform: translateY(-2.5%); }
+  50% { transform: translateY(2.5%); }
+}
+.uq-float {
+  animation: uq-float 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .uq-float { animation: none; }
 }
 
 @layer components {

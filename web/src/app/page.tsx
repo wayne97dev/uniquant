@@ -1,6 +1,6 @@
 import { NetworkBanner } from "@/components/NetworkBanner";
 import { Header } from "@/components/Header";
-import { HeroCity } from "@/components/HeroCity";
+import { HeroAgent } from "@/components/HeroAgent";
 import { Stats } from "@/components/Stats";
 import { RecentMints } from "@/components/RecentMints";
 import { Genesis } from "@/components/Genesis";
@@ -15,23 +15,28 @@ export default function Page() {
       <NetworkBanner />
       <Header />
       <main className="max-w-5xl mx-auto px-6 py-10 space-y-8">
-        <section>
-          <h1 className="font-mono text-3xl mb-2">
-            mined ERC-8004 agent with a self-hook
-          </h1>
-          <p className="text-sm max-w-2xl"
-             style={{ color: "var(--fg-muted)" }}>
-            One contract, three roles: the{" "}
-            <span style={{ color: "var(--accent)" }}>ERC-8004 agent</span>{" "}
-            token, the Uniswap V4 hook that collects 1% of every swap,
-            and the PoW miner that releases 18.9M UQUANT over time.
-            Ships with a soulbound{" "}
-            <span style={{ color: "var(--accent)" }}>Miner Agent NFT</span>{" "}
-            collection. No owner. No mint key. No proxy.
-          </p>
+        <section className="grid lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <h1 className="font-mono text-3xl mb-3 leading-tight">
+              a quantum agent,
+              <br />
+              mined into existence
+            </h1>
+            <p className="text-sm max-w-xl"
+               style={{ color: "var(--fg-muted)" }}>
+              <span style={{ color: "var(--accent)" }}>UNIQUANT</span> is one
+              immutable contract wearing three hats: an{" "}
+              <span style={{ color: "var(--accent)" }}>ERC-8004 agent</span>{" "}
+              token, its own Uniswap V4 swap hook taking 1% of every trade,
+              and a browser proof-of-work miner that releases 18.9M UQUANT
+              over ~3.6 years. Hold UQUANT and claim a soulbound{" "}
+              <span style={{ color: "var(--accent)" }}>quantum-agent NFT</span>{" "}
+              whose tier sharpens as you accumulate. No owner. No mint key.
+              No proxy.
+            </p>
+          </div>
+          <HeroAgent />
         </section>
-
-        <HeroCity />
 
         <Stats />
 
