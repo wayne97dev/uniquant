@@ -38,7 +38,7 @@ const TIERS = [
     key: "initiate",
     name: "Initiate",
     images: ["/nft/UQUANT_1.png", "/nft/UQUANT_2.png"] as const,
-    states: ["Genesis Signal", "Pending State"] as const,
+    states: ["Quantum Azure", "Obsidian Fracture"] as const,
     threshold: "< 1,000",
     minWei: 0n,
   },
@@ -46,7 +46,7 @@ const TIERS = [
     key: "bronze",
     name: "Bronze",
     images: ["/nft/UQUANT_3.png", "/nft/UQUANT_4.png"] as const,
-    states: ["Ordered Execution", "Verified State"] as const,
+    states: ["Emerald Hood", "White Signal"] as const,
     threshold: "1k – 9.9k",
     minWei: 1_000n * 10n ** 18n,
   },
@@ -54,7 +54,7 @@ const TIERS = [
     key: "silver",
     name: "Silver",
     images: ["/nft/UQUANT_5.png", "/nft/UQUANT_6.png"] as const,
-    states: ["Replay Barrier", "Finalized State"] as const,
+    states: ["Olive Cipher", "Blue Lattice"] as const,
     threshold: "10k – 99.9k",
     minWei: 10_000n * 10n ** 18n,
   },
@@ -62,7 +62,7 @@ const TIERS = [
     key: "gold",
     name: "Gold",
     images: ["/nft/UQUANT_7.png", "/nft/UQUANT_8.png"] as const,
-    states: ["Archived State", "Echo State"] as const,
+    states: ["Oracle Veil", "Cap Node"] as const,
     threshold: "100k – 999.9k",
     minWei: 100_000n * 10n ** 18n,
   },
@@ -70,7 +70,7 @@ const TIERS = [
     key: "platinum",
     name: "Platinum",
     images: ["/nft/UQUANT_9.png", "/nft/UQUANT_10.png"] as const,
-    states: ["Transition State", "Confirmation State"] as const,
+    states: ["Bronze Relay", "Polygon Beret"] as const,
     threshold: "≥ 1M",
     minWei: 1_000_000n * 10n ** 18n,
   },
@@ -214,7 +214,7 @@ export function MinerAgent() {
         10 artworks total — 5 tiers × 2 variants. Your tier scales with live{" "}
         {UQUANT_SYMBOL} holdings (the NFT visibly upgrades as you accumulate);
         the variant is fixed at mint, hashed deterministically from your
-        tokenId. Each artwork represents a state in a transaction lifecycle.
+        tokenId. Each artwork is a unique 1/1 quantum AI agent.
         Minimum 1 {UQUANT_SYMBOL} held to claim.
       </p>
 
