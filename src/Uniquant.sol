@@ -59,11 +59,13 @@ contract Uniquant is ERC20, IHooks, ReentrancyGuard {
     // Base produces a block every ~2 seconds. EPOCH_BLOCKS = 600 → ~20 min
     // epoch (challenge refresh window). TARGET_BLOCKS_PER_MINT = 300 → the
     // retargeting algorithm aims for 1 mint per ~600 s (10 min) on average,
-    // Bitcoin-grade slow. At BASE_REWARD = 100 UQUANT that stretches the 18.9M
-    // mining supply over ~3.6 years. MAX_MINTS_PER_BLOCK = 1 caps the per-
-    // block burst to a single mint, so neither one block nor a flood of
-    // parallel miners can sweep emission the way the v1 (>>32 start, 10 per
-    // block) allowed — that misconfig let ~1% of supply mint in 10 minutes.
+    // Bitcoin-grade slow: ~144 mints/day. With BASE_REWARD = 100 halving every
+    // 100k mints, the 18.9M mining supply needs ~424k mints → full emission
+    // lands around ~8 years (bulk front-loaded into the first few years by the
+    // halving). MAX_MINTS_PER_BLOCK = 1 caps the per-block burst to a single
+    // mint, so neither one block nor a flood of parallel miners can sweep
+    // emission the way the v1 (>>32 start, 10 per block) allowed — that
+    // misconfig let ~1% of supply mint in 10 minutes.
     uint256 public constant EPOCH_BLOCKS           = 600;
     uint256 public constant ADJUSTMENT_INTERVAL    = 2_016;
     uint256 public constant TARGET_BLOCKS_PER_MINT = 300;

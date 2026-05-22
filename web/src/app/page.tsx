@@ -29,7 +29,7 @@ export default function Page() {
               <span style={{ color: "var(--accent)" }}>ERC-8004 agent</span>{" "}
               token, its own Uniswap V4 swap hook taking 1% of every trade,
               and a browser proof-of-work miner that releases 18.9M UQUANT
-              over ~3.6 years. Hold UQUANT and claim a soulbound{" "}
+              over ~8 years. Hold UQUANT and claim a soulbound{" "}
               <span style={{ color: "var(--accent)" }}>quantum-agent NFT</span>{" "}
               whose tier sharpens as you accumulate. No owner. No mint key.
               No proxy.
