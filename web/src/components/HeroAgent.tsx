@@ -67,7 +67,7 @@ export function HeroAgent() {
       style={{
         height: 460,
         borderColor: "var(--border)",
-        background: "#06060d",
+        background: "#f4f2fc",
       }}
     >
       {webgl === null ? (

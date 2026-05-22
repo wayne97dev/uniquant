@@ -236,7 +236,7 @@ export function MinerAgent() {
             >
               <div
                 className="relative w-full"
-                style={{ aspectRatio: "1 / 1", background: "#000" }}
+                style={{ aspectRatio: "1 / 1", background: "var(--bg-elevated)" }}
               >
                 <Image
                   src={t.images[0]}

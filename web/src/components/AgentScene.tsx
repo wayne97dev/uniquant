@@ -11,7 +11,6 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { useMemo, useRef, Suspense } from "react";
 import * as THREE from "three";
 
@@ -73,7 +72,7 @@ function radialTexture(inner: string, outer: string) {
 
 function Aura() {
   const tex = useMemo(
-    () => radialTexture("rgba(124,92,255,0.5)", "rgba(124,92,255,0)"),
+    () => radialTexture("rgba(124,92,255,0.24)", "rgba(124,92,255,0)"),
     []
   );
   const ref = useRef<THREE.Mesh>(null!);
@@ -90,7 +89,7 @@ function Aura() {
       <meshBasicMaterial
         map={tex}
         transparent
-        blending={THREE.AdditiveBlending}
+        blending={THREE.NormalBlending}
         depthWrite={false}
         toneMapped={false}
       />
@@ -121,10 +120,10 @@ function Particles({ count = 140 }: { count?: number }) {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.028}
-        color="#5fe9ff"
+        size={0.03}
+        color="#7c5cff"
         transparent
-        opacity={0.65}
+        opacity={0.5}
         sizeAttenuation
         depthWrite={false}
       />
@@ -139,19 +138,11 @@ export default function AgentScene() {
       gl={{ antialias: true }}
       dpr={[1, 2]}
     >
-      <color attach="background" args={["#06060d"]} />
+      <color attach="background" args={["#f4f2fc"]} />
       <Suspense fallback={null}>
         <Aura />
         <Particles />
         <Head />
-        <EffectComposer>
-          <Bloom
-            intensity={0.85}
-            luminanceThreshold={0.35}
-            luminanceSmoothing={0.2}
-            mipmapBlur
-          />
-        </EffectComposer>
       </Suspense>
     </Canvas>
   );

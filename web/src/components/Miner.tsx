@@ -140,7 +140,7 @@ export function Miner() {
             <div
               className="font-mono text-xs px-3 py-2 rounded-sm"
               style={{
-                background: "rgba(244, 196, 48, 0.08)",
+                background: "rgba(109, 78, 255, 0.08)",
                 border: "1px solid var(--accent)",
                 color: "var(--accent)",
               }}

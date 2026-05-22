@@ -17,9 +17,9 @@ export function NetworkBanner() {
     <div
       className="w-full px-6 py-3 text-sm font-mono flex items-center justify-between gap-4"
       style={{
-        background: "#3a1c1c",
-        color: "#fca5a5",
-        borderBottom: "1px solid #5a2a2a",
+        background: "#fdeaea",
+        color: "#b42318",
+        borderBottom: "1px solid #f5c4c0",
       }}
     >
       <span>
@@ -31,9 +31,9 @@ export function NetworkBanner() {
         disabled={isPending}
         className="btn"
         style={{
-          background: "#fca5a5",
-          color: "#3a1c1c",
-          borderColor: "#fca5a5",
+          background: "#dc2626",
+          color: "#ffffff",
+          borderColor: "#dc2626",
         }}
       >
         {isPending ? "switching…" : `switch to ${EXPECTED_CHAIN.name}`}
