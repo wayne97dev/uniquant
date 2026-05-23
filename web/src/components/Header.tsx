@@ -25,7 +25,7 @@ export function Header() {
             <a href="/quantum" className="nav-link">quantum</a>
             <a href="/whitepaper" className="nav-link">whitepaper</a>
             <a
-              href="https://x.com/Uniquantagent8004"
+              href="https://x.com/uniquantbase"
               target="_blank"
               rel="noopener noreferrer"
               className="nav-link"

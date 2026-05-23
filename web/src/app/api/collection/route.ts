@@ -1,9 +1,9 @@
 // OpenSea collection-level metadata endpoint, exposed at
 //
-//   https://nonceagent8004.com/api/collection
+//   https://uquant8004.com/api/collection
 //
 // After the production MinerAgent deploys we call
-//   MinerAgent.setExternalContractURI("https://nonceagent8004.com/api/collection")
+//   MinerAgent.setExternalContractURI("https://uquant8004.com/api/collection")
 // so OpenSea / collection aggregators pull the rich card from here instead
 // of falling back to the on-chain SVG default in MinerAgent._defaultContractURI.
 //
@@ -37,7 +37,7 @@ export async function GET() {
     banner_image: `${IPFS_ROOT}/banner.png`,
     // Featured = token #10 (Polygon Beret), used as collection highlight.
     featured_image: `${IPFS_ROOT}/UQUANT_10.png`,
-    external_link: "https://nonceagent8004.com", // TODO(relaunch): set new Uniquant domain
+    external_link: "https://uquant8004.com",
     collaborators: [],
     // Royalty config — soulbound collection, no secondary trade signal.
     // Some marketplaces still expect these fields to be present.

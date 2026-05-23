@@ -14,8 +14,8 @@ pragma solidity ^0.8.26;
    its own Uniswap V4 hook and its own PoW miner. One
    address, one bytecode, one autonomous agent.
 
-   Site: https://nonceagent8004.com
-   X:    https://x.com/Uniquantagent8004
+   Site: https://uquant8004.com
+   X:    https://x.com/uniquantbase
 */
 
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
