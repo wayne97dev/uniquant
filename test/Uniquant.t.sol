@@ -67,17 +67,19 @@ contract UniquantTest is Test {
         vm.prank(miner);
         nonce.mine(42);
 
+        // Roll one block (same epoch, < EPOCH_BLOCKS) so the 1-mint-per-block
+        // cap resets and the replay check — not BlockCapReached — is the revert.
+        vm.roll(block.number + 1);
         vm.expectRevert(Uniquant.ProofAlreadyUsed.selector);
         vm.prank(miner);
         nonce.mine(42);
     }
 
     function test_mine_blockCapReached() public {
-        for (uint256 i = 0; i < 10; i++) {
-            vm.prank(miner);
-            nonce.mine(i);
-        }
-        assertEq(nonce.mintsInBlock(block.number), 10);
+        // MAX_MINTS_PER_BLOCK == 1: the first mine fills the block.
+        vm.prank(miner);
+        nonce.mine(0);
+        assertEq(nonce.mintsInBlock(block.number), 1);
 
         vm.expectRevert(Uniquant.BlockCapReached.selector);
         vm.prank(miner);
@@ -85,14 +87,13 @@ contract UniquantTest is Test {
     }
 
     function test_mine_blockCapResetsNextBlock() public {
-        for (uint256 i = 0; i < 10; i++) {
-            vm.prank(miner);
-            nonce.mine(i);
-        }
+        vm.prank(miner);
+        nonce.mine(0);
+        // Cap is full for this block; the next block frees it.
         vm.roll(block.number + 1);
         vm.prank(miner);
         nonce.mine(100);
-        assertEq(nonce.totalMints(), 11);
+        assertEq(nonce.totalMints(), 2);
     }
 
     function test_mine_perWalletNoCollision() public {
@@ -101,7 +102,9 @@ contract UniquantTest is Test {
         vm.prank(miner);
         nonce.mine(7);
 
-        // Same nonce, different miner — different proof key → OK
+        // Roll one block (same epoch) to clear the 1-mint-per-block cap; the
+        // same nonce from a different miner is a different proof key → OK.
+        vm.roll(block.number + 1);
         vm.prank(miner2);
         nonce.mine(7);
 
@@ -303,8 +306,8 @@ contract UniquantTest is Test {
         assertEq(nonce.ERA_MINTS(), 100_000);
         assertEq(nonce.EPOCH_BLOCKS(), 600);
         assertEq(nonce.ADJUSTMENT_INTERVAL(), 2_016);
-        assertEq(nonce.TARGET_BLOCKS_PER_MINT(), 30);
-        assertEq(nonce.MAX_MINTS_PER_BLOCK(), 10);
+        assertEq(nonce.TARGET_BLOCKS_PER_MINT(), 300);
+        assertEq(nonce.MAX_MINTS_PER_BLOCK(), 1);
         assertEq(nonce.name(), "Uniquant");
         assertEq(nonce.symbol(), "UQUANT");
     }
