@@ -70,7 +70,7 @@ const uniquantAbi = parseAbi([
 // content-addressed, so the URLs are provably immutable forever; even if
 // Pinata drops the pin tomorrow, anyone re-pinning the same 11 PNGs gets
 // the identical CID and the URLs keep resolving.
-const IPFS_ROOT = "ipfs://REPLACE_WITH_UQUANT_PIN_CID"; // TODO: pin web/public/nft/UQUANT_*.png to Pinata, paste new CIDv1 folder hash here
+const IPFS_ROOT = "ipfs://bafybeidckfa2jpj2jvftaz2n6lo6yhcmsvqlzcypvyhfedwilloivbyziq";
 
 type Tier = {
   name: string;

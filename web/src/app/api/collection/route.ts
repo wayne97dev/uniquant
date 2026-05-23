@@ -16,7 +16,7 @@ export const revalidate = 3600;
 
 // IPFS folder pin (CIDv1 dag-pb) — same root the /api/agent/[id] route
 // uses for per-token variants. One CID, immutable, content-addressed.
-const IPFS_ROOT = "ipfs://REPLACE_WITH_UQUANT_PIN_CID"; // TODO(relaunch): pin web/public/nft/* (UQUANT_1..10 + collection.png + banner.png) to Pinata, paste new CIDv1 folder hash
+const IPFS_ROOT = "ipfs://bafybeidckfa2jpj2jvftaz2n6lo6yhcmsvqlzcypvyhfedwilloivbyziq";
 
 export async function GET() {
   // OpenSea collection metadata standard:
