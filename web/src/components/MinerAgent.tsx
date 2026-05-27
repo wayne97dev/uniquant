@@ -198,12 +198,23 @@ export function MinerAgent() {
     <section className="panel p-5" id="agent">
       <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
         <h2 className="font-mono text-xl">miner agent NFT</h2>
-        <span
-          className="font-mono text-xs"
-          style={{ color: "var(--fg-muted)" }}
-        >
-          soulbound · ERC-8004 · on-chain tier
-        </span>
+        <div className="flex items-center gap-3">
+          <a
+            href="https://opensea.io/collection/uniquant-agent"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs hover:underline"
+            style={{ color: "var(--accent)" }}
+          >
+            view on OpenSea ↗
+          </a>
+          <span
+            className="font-mono text-xs"
+            style={{ color: "var(--fg-muted)" }}
+          >
+            soulbound · ERC-8004 · on-chain tier
+          </span>
+        </div>
       </div>
 
       <p

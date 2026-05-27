@@ -97,6 +97,18 @@ export default function Page() {
               @uniquanterc8004
             </a>
           </div>
+          <div>
+            nft collection:{" "}
+            <a
+              href="https://opensea.io/collection/uniquant-agent"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+              style={{ color: "var(--accent)" }}
+            >
+              opensea.io/collection/uniquant-agent
+            </a>
+          </div>
         </footer>
       </main>
     </>
