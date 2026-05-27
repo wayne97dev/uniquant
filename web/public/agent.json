@@ -10,7 +10,7 @@
     "namespace": "eip155"
   },
   "endpoints": {
-    "contract": "base://0xE7bADd12bdf070e925A55A98c981f3aBAB4f20cc",
+    "contract": "base://0xEB63b0fc46649708287C39c57d519d3113d320cc",
     "frontend": "https://uquant8004.com",
     "whitepaper": "https://uquant8004.com/whitepaper.pdf",
     "source": "https://github.com/wayne97dev/uniquant"
@@ -38,10 +38,10 @@
       "via": "uniswap-v4-pool",
       "poolKey": {
         "currency0": "0x0000000000000000000000000000000000000000",
-        "currency1": "0xE7bADd12bdf070e925A55A98c981f3aBAB4f20cc",
+        "currency1": "0xEB63b0fc46649708287C39c57d519d3113d320cc",
         "fee": 0,
         "tickSpacing": 200,
-        "hooks": "0xE7bADd12bdf070e925A55A98c981f3aBAB4f20cc"
+        "hooks": "0xEB63b0fc46649708287C39c57d519d3113d320cc"
       }
     },
     {
@@ -84,15 +84,15 @@
   "extensions": {
     "minerAgent": {
       "description": "Soulbound ERC-721 collection where UQUANT participants can claim a per-address NFT identity (one per wallet). 10 artworks total: 5 tiers x 2 variants. Tier scales dynamically with live UQUANT holdings - Initiate (< 1,000), Bronze (1k-9.9k), Silver (10k-99.9k), Gold (100k-999.9k), Platinum (>= 1M). Variant is fixed at mint, hashed deterministically from the tokenId. Each artwork is a unique 1/1 quantum AI agent character. Minimum 1 UQUANT held to claim.",
-      "address": "0x45F45e470E974E720614d31815c42dbA18F8b4cF"
+      "address": "0x801FC2dbdDbC617bD787F942fe02476B1cc5BBaA"
     },
     "agentRegistration": {
       "chain": "base",
       "chainId": 8453,
       "registryAddress": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
-      "agentId": 51672,
-      "owner": "0x51fbf2b3eFf8D56730551C750426FcaBf5A4aE6a",
-      "directory": "https://8004scan.io/agents/base/51672"
+      "agentId": 0,
+      "owner": "0x058c453b9D2568438e425199F96E0399Fc780510",
+      "directory": "https://8004scan.io/agents/base/"
     }
   }
 }

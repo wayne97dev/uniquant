@@ -14,7 +14,7 @@ import type { Address } from "viem";
 
 // Uniquant ERC-20 token + V4 hook + PoW miner — Base mainnet.
 export const UQUANT_ADDRESS: Address =
-  "0x0000000000000000000000000000000000000000"; // TODO(relaunch): set deployed Uniquant address
+  "0xEB63b0fc46649708287C39c57d519d3113d320cc";
 
 export const UQUANT_DECIMALS = 18;
 export const UQUANT_SYMBOL = "UQUANT";
@@ -22,7 +22,7 @@ export const UQUANT_SYMBOL = "UQUANT";
 // MinerAgent ERC-721 contract address, deployed against the Uniquant token
 // above. After deploy, also flip CLAIM_LIVE in MinerAgent.tsx.
 export const MINER_AGENT_ADDRESS: Address =
-  "0x0000000000000000000000000000000000000000"; // TODO(relaunch): set deployed MinerAgent address
+  "0x801FC2dbdDbC617bD787F942fe02476B1cc5BBaA";
 
 // V4 PoolManager on Base mainnet — used to display pool info, not
 // required for contract reads. Canonical Base deployment; verify against
