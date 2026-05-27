@@ -86,6 +86,18 @@ export default function Page() {
             </a>
           </div>
           <div>
+            ERC-8004 agent:{" "}
+            <a
+              href="https://8004scan.io/agents/base/53667"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+              style={{ color: "var(--accent)" }}
+            >
+              8004scan.io/agents/base/53667
+            </a>
+          </div>
+          <div>
             x:{" "}
             <a
               href="https://x.com/uniquanterc8004"
