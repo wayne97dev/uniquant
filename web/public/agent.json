@@ -1,7 +1,7 @@
 {
   "$schema": "https://eips.ethereum.org/EIPS/eip-8004",
   "name": "Uniquant",
-  "description": "UQUANT is a mined ERC-20 token whose contract is also its own Uniswap V4 swap hook. One bytecode, one address. The token, the hook, and the PoW miner are the same contract. No owner, no upgrade path, no admin keys. UQUANT is autonomous: it accepts genesis purchases, seeds its own V4 liquidity pool when ready, locks the LP forever via hook reverts on liquidity modifications, takes a 1% swap fee on all trades, and pays mining rewards in PoW-bound nonces. Deployed on Base mainnet. Everything is verifiable on-chain.",
+  "description": "UQUANT is a mined ERC-20 token whose contract is also its own Uniswap V4 swap hook. One bytecode, one address. The token, the hook, and the PoW miner are the same contract. No owner, no upgrade path, no admin keys. UQUANT is autonomous: it accepts genesis purchases, seeds its own V4 liquidity pool when ready (controller-managed liquidity), takes a 1% swap fee on all trades, and pays mining rewards in PoW-bound nonces. Deployed on Base mainnet. Everything is verifiable on-chain.",
   "version": "1.0.0",
   "type": "token-agent",
   "chain": {
@@ -13,12 +13,12 @@
     "contract": "base://0xE7bADd12bdf070e925A55A98c981f3aBAB4f20cc",
     "frontend": "https://uquant8004.com",
     "whitepaper": "https://uquant8004.com/whitepaper.pdf",
-    "source": "https://github.com/wayne97dev/mineeth"
+    "source": "https://github.com/wayne97dev/uniquant"
   },
   "capabilities": [
     {
       "id": "mintGenesis",
-      "description": "Buy raw UQUANT at fixed 0.01 ETH per 1,000 UQUANT during the genesis phase. Max 5 units per tx. Available until genesisComplete = true.",
+      "description": "Buy raw UQUANT at fixed 0.01 ETH per 7,000 UQUANT during the genesis phase. Max 5 units per tx. Available until genesisComplete = true.",
       "abi": "mintGenesis(uint256 units)",
       "payable": true
     },
@@ -29,12 +29,12 @@
     },
     {
       "id": "mine",
-      "description": "Submit a PoW solution and receive the current era's reward. Challenge is bound to msg.sender and the current epoch (~20 minute window on Base, ~100 blocks). Solutions are unstealable from the mempool.",
+      "description": "Submit a PoW solution and receive the current era's reward. Challenge is bound to msg.sender and the current epoch (~20 minute window on Base, ~600 blocks). Solutions are unstealable from the mempool.",
       "abi": "mine(uint256 nonce)"
     },
     {
       "id": "swap",
-      "description": "Trade UQUANT against ETH through the locked Uniswap V4 pool on Base. The 1% fee is taken on the ETH side and accrues to the contract balance, claimable by the controller via claimFees().",
+      "description": "Trade UQUANT against ETH through the Uniswap V4 pool on Base. The 1% fee is taken on the ETH side and accrues to the contract balance, claimable by the controller via claimFees().",
       "via": "uniswap-v4-pool",
       "poolKey": {
         "currency0": "0x0000000000000000000000000000000000000000",
@@ -72,18 +72,18 @@
   },
   "tokenomics": {
     "totalSupply": "21000000000000000000000000",
-    "miningSupply": "18900000000000000000000000",
-    "genesisCap": "1050000000000000000000000",
-    "lpAllocation": "1050000000000000000000000",
+    "miningSupply": "12600000000000000000000000",
+    "genesisCap": "4200000000000000000000000",
+    "lpAllocation": "4200000000000000000000000",
     "baseReward": "100000000000000000000",
     "halvingEvery": 100000,
     "retargetEvery": 2016,
-    "epochBlocks": 100,
-    "maxMintsPerBlock": 10
+    "epochBlocks": 600,
+    "maxMintsPerBlock": 1
   },
   "extensions": {
     "minerAgent": {
-      "description": "Soulbound ERC-721 collection where UQUANT participants can claim a per-address NFT identity (one per wallet). 10 artworks total: 5 tiers x 2 variants. Tier scales dynamically with live UQUANT holdings - Initiate (< 1,000), Bronze (1k-9.9k), Silver (10k-99.9k), Gold (100k-999.9k), Platinum (>= 1M). Variant is fixed at mint, hashed deterministically from the tokenId. Each artwork represents a transaction lifecycle state. Minimum 1 UQUANT held to claim.",
+      "description": "Soulbound ERC-721 collection where UQUANT participants can claim a per-address NFT identity (one per wallet). 10 artworks total: 5 tiers x 2 variants. Tier scales dynamically with live UQUANT holdings - Initiate (< 1,000), Bronze (1k-9.9k), Silver (10k-99.9k), Gold (100k-999.9k), Platinum (>= 1M). Variant is fixed at mint, hashed deterministically from the tokenId. Each artwork is a unique 1/1 quantum AI agent character. Minimum 1 UQUANT held to claim.",
       "address": "0x45F45e470E974E720614d31815c42dbA18F8b4cF"
     },
     "agentRegistration": {

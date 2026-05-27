@@ -12,7 +12,7 @@ import { uniquantAbi } from "@/lib/uniquantAbi";
 import { UQUANT_ADDRESS } from "@/lib/contract";
 
 const PRICE_PER_UNIT_ETH = 0.01;
-const TOKENS_PER_UNIT = 1000;
+const TOKENS_PER_UNIT = 7000;
 const MAX_UNITS_PER_TX = 5;
 
 export function Genesis() {
@@ -43,7 +43,7 @@ export function Genesis() {
     query: { enabled: !!address && (refundOpen as boolean) === true, refetchInterval: 12_000 },
   });
   const userTokens = (userBalance as bigint | undefined) ?? 0n;
-  const userUnits = userTokens / 1000n / 10n ** 18n; // floor divide to whole units
+  const userUnits = userTokens / 7000n / 10n ** 18n; // floor divide to whole units
 
   const { writeContract, data: txHash, isPending, error } = useWriteContract();
   const { isLoading: isMining, isSuccess } = useWaitForTransactionReceipt({ hash: txHash });
@@ -89,7 +89,7 @@ export function Genesis() {
         <p className="mt-2 text-sm" style={{ color: "var(--fg-muted)" }}>
           Buy raw UQUANT at the fixed pre-pool rate of{" "}
           <span className="font-mono" style={{ color: "var(--fg)" }}>
-            0.01 ETH per 1,000 UQUANT
+            0.01 ETH per 7,000 UQUANT
           </span>
           . Max {MAX_UNITS_PER_TX} units per tx. The ETH you spend funds the V4
           liquidity pool that goes live after genesis sells out.

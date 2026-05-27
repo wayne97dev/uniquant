@@ -13,12 +13,12 @@ Logic forked 1:1 from `hash256.org` (MIT). Branding and frontend are new.
 ## Architecture
 
 - **Token** — ERC-20 named `Uniquant` / `UQUANT`, 21M cap, 18 decimals.
-- **Genesis sale** — 1.05M UQUANT (5%) sold at `0.01 ETH` per `1,000 UQUANT`,
+- **Genesis sale** — 4.2M UQUANT (20%) sold at `0.01 ETH` per `7,000 UQUANT`,
   max 5 units per tx. ETH raised goes into the Uniswap V4 pool.
 - **Pool seeding** — once genesis is sold out (or 30 min after deploy via
-  `partialSeed`), 1.05M UQUANT + raised ETH form the V4 LP; the controller
+  `partialSeed`), 4.2M UQUANT + raised ETH form the V4 LP; the controller
   receives the LP position.
-- **Mining** — 18.9M UQUANT (90%) released via PoW.
+- **Mining** — 12.6M UQUANT (60%) released via PoW.
   - Challenge: `keccak256(keccak256(chainId, contract, miner, epoch), nonce) < currentDifficulty`
   - Epoch: every 100 blocks
   - Reward: `100 UQUANT >> era`, era = `totalMints / 100_000`
@@ -33,7 +33,7 @@ Logic forked 1:1 from `hash256.org` (MIT). Branding and frontend are new.
 > Ethereum's 12s), so the timing constants were scaled 6× to preserve
 > the original wall-clock tokenomics:
 > `EPOCH_BLOCKS = 600` → ~20 min epoch, `TARGET_BLOCKS_PER_MINT = 30` →
-> ~1 mint per minute. 18.9M UQUANT released over ~131 days at target
+> ~1 mint per 10 minutes. 12.6M UQUANT released over ~3 years at target
 > rate, matching the Ethereum design intent.
 
 ## Setup

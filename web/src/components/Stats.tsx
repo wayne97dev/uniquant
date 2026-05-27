@@ -151,14 +151,14 @@ export function Stats() {
 
       <div className="panel p-4">
         <div className="panel-label mb-3">mining supply</div>
-        <ProgressBar value={minted} max={miningSupply ?? 18_900_000n * 10n ** 18n} />
+        <ProgressBar value={minted} max={miningSupply ?? 12_600_000n * 10n ** 18n} />
       </div>
 
       <div className="panel p-4">
         <div className="panel-label mb-3">
           genesis {gComplete ? PLACEHOLDER : "(open)"}
         </div>
-        <ProgressBar value={gMinted} max={genesisCap ?? 1_050_000n * 10n ** 18n} />
+        <ProgressBar value={gMinted} max={genesisCap ?? 4_200_000n * 10n ** 18n} />
         <div className="mt-2 font-mono text-xs" style={{ color: "var(--fg-muted)" }}>
           ETH raised: {formatUnits(gEthRaised, 18)} ETH
           {gComplete && " — pool seeded ✓"}

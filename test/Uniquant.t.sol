@@ -142,8 +142,8 @@ contract UniquantTest is Test {
         vm.prank(buyer);
         nonce.mintGenesis{value: 0.01 ether}(1);
 
-        assertEq(nonce.balanceOf(buyer), 1_000e18);
-        assertEq(nonce.genesisMinted(), 1_000e18);
+        assertEq(nonce.balanceOf(buyer), 7_000e18);
+        assertEq(nonce.genesisMinted(), 7_000e18);
         assertEq(nonce.genesisEthRaised(), 0.01 ether);
     }
 
@@ -158,7 +158,7 @@ contract UniquantTest is Test {
 
         // 5 units × 0.01 ETH = 0.05 ETH cost, 0.45 ETH refunded.
         assertEq(buyer.balance, 0.95 ether);
-        assertEq(nonce.balanceOf(buyer), 5_000e18);
+        assertEq(nonce.balanceOf(buyer), 35_000e18);
     }
 
     function test_genesisMint_overTxCapReverts() public {
@@ -192,7 +192,7 @@ contract UniquantTest is Test {
 
         vm.prank(buyer);
         vm.expectRevert(Uniquant.RefundGraceNotPassed.selector);
-        nonce.refundGenesis(1_000e18);
+        nonce.refundGenesis(7_000e18);
     }
 
     function test_refund_revertsAfterGenesisComplete() public {
@@ -206,7 +206,7 @@ contract UniquantTest is Test {
         vm.warp(block.timestamp + 3 days + 1);
         vm.prank(buyer);
         vm.expectRevert(Uniquant.GenesisAlreadyComplete.selector);
-        nonce.refundGenesis(1_000e18);
+        nonce.refundGenesis(7_000e18);
     }
 
     function test_refund_revertsForNonUnitMultiple() public {
@@ -219,7 +219,7 @@ contract UniquantTest is Test {
         vm.warp(block.timestamp + 3 days + 1);
         vm.prank(buyer);
         vm.expectRevert(Uniquant.MustBeUnitMultiple.selector);
-        nonce.refundGenesis(500e18); // half a unit
+        nonce.refundGenesis(3_500e18); // half a unit
     }
 
     function test_refund_revertsForZero() public {
@@ -237,12 +237,12 @@ contract UniquantTest is Test {
 
         vm.prank(buyer);
         nonce.mintGenesis{value: 0.01 ether}(1);
-        assertEq(nonce.balanceOf(buyer), 1_000e18);
+        assertEq(nonce.balanceOf(buyer), 7_000e18);
         assertEq(buyer.balance, 0.99 ether);
 
         vm.warp(block.timestamp + 3 days + 1);
         vm.prank(buyer);
-        nonce.refundGenesis(1_000e18);
+        nonce.refundGenesis(7_000e18);
 
         assertEq(nonce.balanceOf(buyer), 0, "nonce should be burned");
         assertEq(buyer.balance, 1 ether, "eth should be returned");
@@ -257,17 +257,17 @@ contract UniquantTest is Test {
 
         vm.prank(buyer);
         nonce.mintGenesis{value: 0.05 ether}(5);
-        assertEq(nonce.balanceOf(buyer), 5_000e18);
-        assertEq(nonce.genesisMinted(), 5_000e18);
+        assertEq(nonce.balanceOf(buyer), 35_000e18);
+        assertEq(nonce.genesisMinted(), 35_000e18);
         assertEq(nonce.genesisEthRaised(), 0.05 ether);
 
         vm.warp(block.timestamp + 3 days + 1);
         vm.prank(buyer);
-        nonce.refundGenesis(2_000e18);
+        nonce.refundGenesis(14_000e18);
 
-        assertEq(nonce.balanceOf(buyer), 3_000e18, "keeps 3 units worth");
+        assertEq(nonce.balanceOf(buyer), 21_000e18, "keeps 3 units worth");
         assertEq(buyer.balance, 0.97 ether, "0.02 eth back over the 0.95 untouched");
-        assertEq(nonce.genesisMinted(), 3_000e18);
+        assertEq(nonce.genesisMinted(), 21_000e18);
         assertEq(nonce.genesisEthRaised(), 0.03 ether);
     }
 
@@ -280,11 +280,11 @@ contract UniquantTest is Test {
 
         vm.warp(block.timestamp + 3 days + 1);
         vm.prank(buyer);
-        nonce.refundGenesis(1_000e18);
+        nonce.refundGenesis(7_000e18);
 
         vm.prank(buyer);
         vm.expectRevert();
-        nonce.refundGenesis(1_000e18);
+        nonce.refundGenesis(7_000e18);
     }
 
     function test_refundUnlocked_view() public {
@@ -300,8 +300,8 @@ contract UniquantTest is Test {
 
     function test_constants() public view {
         assertEq(nonce.TOTAL_SUPPLY(), 21_000_000e18);
-        assertEq(nonce.MINING_SUPPLY(), 18_900_000e18);
-        assertEq(nonce.GENESIS_CAP(), 1_050_000e18);
+        assertEq(nonce.MINING_SUPPLY(), 12_600_000e18);
+        assertEq(nonce.GENESIS_CAP(), 4_200_000e18);
         assertEq(nonce.BASE_REWARD(), 100e18);
         assertEq(nonce.ERA_MINTS(), 100_000);
         assertEq(nonce.EPOCH_BLOCKS(), 600);

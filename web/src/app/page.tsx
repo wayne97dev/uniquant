@@ -28,8 +28,8 @@ export default function Page() {
               immutable contract wearing three hats: an{" "}
               <span style={{ color: "var(--accent)" }}>ERC-8004 agent</span>{" "}
               token, its own Uniswap V4 swap hook taking 1% of every trade,
-              and a browser proof-of-work miner that releases 18.9M UQUANT
-              over ~8 years. Hold UQUANT and claim a soulbound{" "}
+              and a browser proof-of-work miner that releases 12.6M UQUANT
+              over ~3 years. Hold UQUANT and claim a soulbound{" "}
               <span style={{ color: "var(--accent)" }}>quantum-agent NFT</span>{" "}
               whose tier sharpens as you accumulate. No owner. No mint key.
               No proxy.
@@ -54,7 +54,7 @@ export default function Page() {
         <footer className="pt-8 border-t font-mono text-xs space-y-1"
                 style={{ borderColor: "var(--border)", color: "var(--fg-muted)" }}>
           <div>total supply: 21,000,000 UQUANT</div>
-          <div>genesis: 5% (1.05M) · LP: 5% (1.05M) · mining: 90% (18.9M)</div>
+          <div>genesis: 20% (4.2M) · LP: 20% (4.2M) · mining: 60% (12.6M)</div>
           <div>retarget: every 2,016 mints, ±4× clamped</div>
           <div>halving: every 100,000 mints</div>
           <div>swap fee: 1% to controller</div>

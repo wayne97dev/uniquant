@@ -8,7 +8,7 @@ May 2026
 
 UNIQUANT (ticker UQUANT) is an autonomous on-chain agent you mine into existence. It is an ERC-20 token released entirely through proof of work — no team allocation, no insider presale, no admin keys, no upgrade path — that is simultaneously its own Uniswap V4 swap hook and its own miner. One bytecode, one address, three roles. Once deployed, the rules cannot change.
 
-The supply is 21 million tokens, Bitcoin scale. Five percent funds an open genesis sale, five percent seeds a Uniswap V4 UQUANT/ETH pool, and the remaining ninety percent is mined: anyone with a browser can solve a keccak256 puzzle bound to their wallet and call `mine()` for the current era's reward. Mining is deliberately slow — a ten-minute target and a one-mint-per-block cap stretch emission across years, not weeks.
+The supply is 21 million tokens, Bitcoin scale. Twenty percent funds an open genesis sale, twenty percent seeds a Uniswap V4 UQUANT/ETH pool, and the remaining sixty percent is mined: anyone with a browser can solve a keccak256 puzzle bound to their wallet and call `mine()` for the current era's reward. Mining is deliberately slow — a ten-minute target and a one-mint-per-block cap stretch emission across years, not weeks.
 
 Around the token sits an identity layer. Holders claim a soulbound *Miner Agent* NFT — one of ten 1/1 quantum-agent artworks whose tier sharpens live with their balance — and the contract itself is built to register as a trustless ERC-8004 agent. Looking forward, that identity is designed to migrate to post-quantum (quantum-resistant) signatures, secured by the same keccak256 primitive that powers the mining.
 
@@ -30,11 +30,11 @@ The contract moves through four phases.
 
 **Phase 0, Empty.** Deployed and holding nothing. Constructor parameters set the Uniswap V4 PoolManager, PositionManager, and Permit2 for the target chain. The deployer becomes the `controller`, the only address with privileged functions (fee withdrawal and pool management — see below). No supply or schedule parameter is mutable from outside.
 
-**Phase 1, Genesis.** Anyone can call `mintGenesis(units)` with `units * 0.01 ETH`. Each unit yields 1,000 UQUANT, capped at five units per transaction so a single mempool slot cannot sweep the allocation. Excess ETH is refunded in the same call. Three days after deploy, if the pool has not been seeded, `refundGenesis` opens and lets any holder of genesis UQUANT redeem it for ETH at the original price (see Refund escape hatch).
+**Phase 1, Genesis.** Anyone can call `mintGenesis(units)` with `units * 0.01 ETH`. Each unit yields 7,000 UQUANT, capped at five units per transaction so a single mempool slot cannot sweep the allocation. Excess ETH is refunded in the same call. Three days after deploy, if the pool has not been seeded, `refundGenesis` opens and lets any holder of genesis UQUANT redeem it for ETH at the original price (see Refund escape hatch).
 
-**Phase 2, Seeding.** Once the genesis cap of 1,050,000 UQUANT sells out, anyone can call `seedPool()`. It mints the remaining 19,950,000 UQUANT to the contract, creates the V4 UQUANT/ETH pool with the contract as its hook, deposits all genesis ETH plus 1,050,000 UQUANT as liquidity, and sets the initial mining difficulty. The V4 LP position NFT is minted to the controller. A fallback `partialSeed()` covers a stalled genesis; the controller can call it no earlier than thirty minutes after deploy.
+**Phase 2, Seeding.** Once the genesis cap of 4,200,000 UQUANT sells out, anyone can call `seedPool()`. It mints the remaining 16,800,000 UQUANT to the contract, creates the V4 UQUANT/ETH pool with the contract as its hook, deposits all genesis ETH plus 4,200,000 UQUANT as liquidity, and sets the initial mining difficulty. The V4 LP position NFT is minted to the controller. A fallback `partialSeed()` covers a stalled genesis; the controller can call it no earlier than thirty minutes after deploy.
 
-**Phase 3, Mining.** The remaining 18,900,000 UQUANT is released through proof of work. Each successful `mine(nonce)` pays the current era's reward, starting at 100 UQUANT and halving every 100,000 mints. Mining ends when the cap is reached.
+**Phase 3, Mining.** The remaining 12,600,000 UQUANT is released through proof of work. Each successful `mine(nonce)` pays the current era's reward, starting at 100 UQUANT and halving every 100,000 mints. Mining ends when the cap is reached.
 
 Phase transitions are gated by storage flags. No admin function can skip a phase, rewind state, or change the supply schedule.
 
@@ -65,7 +65,7 @@ Mining is intentionally slow. Difficulty retargets every 2,016 mints — Bitcoin
 
 Starting difficulty after seeding is `type(uint256).max >> 42` — roughly one valid hash in 4.4 trillion. That is orders of magnitude harder than a naive launch, deliberately so: it prevents the first minutes from emitting a meaningful slice of supply, and the retarget then converges to the ten-minute target.
 
-Because the reward halves every 100,000 mints, the supply is front-loaded but the tail is long: the bulk of the 18.9M mining allocation emits over the first several years, and full exhaustion lands on the order of eight years at target rate. UNIQUANT is a slow asset by design.
+Because the reward halves every 100,000 mints, the supply is front-loaded but the tail is long: the bulk of the 12.6M mining allocation emits over the first couple of years, and full exhaustion lands on the order of three years at target rate. UNIQUANT is a slow asset by design.
 
 ## The self-hook
 
@@ -79,16 +79,16 @@ After seeding, the pool exists at: currency0 native ETH, currency1 UQUANT, tickS
 
 | Allocation | Amount | Share |
 |---|---|---|
-| Genesis sale | 1,050,000 UQUANT | 5% |
-| Seed LP | 1,050,000 UQUANT | 5% |
-| Mining | 18,900,000 UQUANT | 90% |
+| Genesis sale | 4,200,000 UQUANT | 20% |
+| Seed LP | 4,200,000 UQUANT | 20% |
+| Mining | 12,600,000 UQUANT | 60% |
 | **Total** | **21,000,000 UQUANT** | **100%** |
 
-Genesis is priced at 0.01 ETH per 1,000 UQUANT, fixed. A fully subscribed genesis raises 10.5 ETH, all of which goes into the V4 pool as the ETH side of seed liquidity. Nothing reaches the deployer at genesis.
+Genesis is priced at 0.01 ETH per 7,000 UQUANT, fixed. A fully subscribed genesis raises 6 ETH, all of which goes into the V4 pool as the ETH side of seed liquidity. Nothing reaches the deployer at genesis.
 
-The mining schedule halves every 100,000 successful mints. Era zero pays 100 UQUANT per mint, era one pays 50, era two 25, and so on; cumulative rewards reach the 18.9M cap around era four. At the ten-minute target this is roughly 144 mints per day, which is why full emission stretches across years.
+The mining schedule halves every 100,000 successful mints. Era zero pays 100 UQUANT per mint, era one pays 50, era two 25, and so on; cumulative rewards reach the 12.6M cap early in era one. At the ten-minute target this is roughly 144 mints per day, which is why full emission stretches across years.
 
-These percentages hold at full sell-out. If `partialSeed` runs below the cap, unsold genesis UQUANT is never minted (see Seeding strategy), so the genesis and LP shares shrink and the mining share grows proportionally — the 18.9M mining allocation is fixed in absolute terms regardless.
+These percentages hold at full sell-out. If `partialSeed` runs below the cap, unsold genesis UQUANT is never minted (see Seeding strategy), so the genesis and LP shares shrink and the mining share grows proportionally — the 12.6M mining allocation is fixed in absolute terms regardless.
 
 ## Seeding strategy
 
@@ -99,7 +99,7 @@ seedPool()    — permissionless, requires genesisMinted == GENESIS_CAP
 partialSeed() — controller only, requires block.timestamp >= deployedAt + 30 minutes
 ```
 
-Both call the same internal logic; the only difference is whether genesis reached the full 1,050,000 UQUANT cap. `seedPool` is the happy path; `partialSeed` is the escape hatch for a stalled sale.
+Both call the same internal logic; the only difference is whether genesis reached the full 4,200,000 UQUANT cap. `seedPool` is the happy path; `partialSeed` is the escape hatch for a stalled sale.
 
 The useful property of `partialSeed` is how it treats unsold genesis. The body uses `genesisMinted`, not `GENESIS_CAP`:
 
@@ -112,11 +112,11 @@ function _seedBody() internal {
 }
 ```
 
-Unsold genesis UQUANT is never minted — not burned, not held, not stuck in storage; it simply never exists. If genesis stops at 300,000 UQUANT sold, total supply becomes 300,000 (held by buyers) + 300,000 (LP) + 18,900,000 (mining) = 19,500,000 UQUANT, and the pool is seeded with 300,000 UQUANT against whatever ETH was raised.
+Unsold genesis UQUANT is never minted — not burned, not held, not stuck in storage; it simply never exists. If genesis stops at 1,400,000 UQUANT sold, total supply becomes 1,400,000 (held by buyers) + 1,400,000 (LP) + 12,600,000 (mining) = 15,400,000 UQUANT, and the pool is seeded with 1,400,000 UQUANT against whatever ETH was raised.
 
 The 30-minute delay on `partialSeed` is the only anti-grief constraint: it stops the controller from instantly seeding an empty pool, which would yield zero liquidity and break the AMM. The `genesisMinted > 0` check enforces that at least one external buyer participated.
 
-The downside of early seeding is economic, not technical. Mining supply is fixed at 18,900,000 UQUANT regardless of how much genesis sold; the LP side scales with sales. Seeding at 30% gives roughly a third of the full-sellout depth, and a thin pool against active mining means each mined token presses price harder. The recommended path is a **threshold seed** — commit publicly to seeding at a chosen percentage with a deadline fallback — so the community has a number to rally around without the open-ended uncertainty of a strict sell-out that may never arrive.
+The downside of early seeding is economic, not technical. Mining supply is fixed at 12,600,000 UQUANT regardless of how much genesis sold; the LP side scales with sales. Seeding at 30% gives roughly a third of the full-sellout depth, and a thin pool against active mining means each mined token presses price harder. The recommended path is a **threshold seed** — commit publicly to seeding at a chosen percentage with a deadline fallback — so the community has a number to rally around without the open-ended uncertainty of a strict sell-out that may never arrive.
 
 ## Refund escape hatch
 
@@ -142,7 +142,7 @@ function refundGenesis(uint256 tokenAmount) external nonReentrant {
 }
 ```
 
-`REFUND_GRACE` is three days. Once it passes, any holder of genesis UQUANT can redeem at the original 0.01 ETH per 1,000 rate, provided the pool has not been seeded. Partial refunds are allowed.
+`REFUND_GRACE` is three days. Once it passes, any holder of genesis UQUANT can redeem at the original 0.01 ETH per 7,000 rate, provided the pool has not been seeded. Partial refunds are allowed.
 
 Three properties keep it safe. It is gated on `!genesisComplete`: after seeding, the ETH is liquidity in the pool, not on the contract, so refunds become impossible by design — post-seed exits happen by selling into the AMM. The unit-multiple check matches genesis granularity and avoids dust drift against `genesisEthRaised`. And `_burn` happens before the ETH transfer, so combined with `nonReentrant` there is no path to replay a refund.
 

@@ -46,12 +46,15 @@ contract Uniquant is ERC20, IHooks, ReentrancyGuard {
     using BalanceDeltaLibrary for BalanceDelta;
 
     uint256 public constant TOTAL_SUPPLY     = 21_000_000e18;
-    uint256 public constant GENESIS_CAP      =  1_050_000e18;
-    uint256 public constant GENESIS_LP       =  1_050_000e18;
-    uint256 public constant MINING_SUPPLY    = 18_900_000e18;
+    uint256 public constant GENESIS_CAP      =  4_200_000e18;
+    uint256 public constant GENESIS_LP       =  4_200_000e18;
+    uint256 public constant MINING_SUPPLY    = 12_600_000e18;
 
+    // 0.01 ETH buys GENESIS_UNIT (7,000 UQUANT). The 4.2M (20%) cap raises
+    // 6 ETH at full, paired 1:1 with 4.2M UQUANT as the seed LP, so the V4
+    // pool opens at exactly the genesis price.
     uint256 public constant GENESIS_PRICE    = 0.01 ether;
-    uint256 public constant GENESIS_UNIT     = 1_000e18;
+    uint256 public constant GENESIS_UNIT     = 7_000e18;
     uint256 public constant MAX_UNITS_PER_TX = 5;
 
     uint256 public constant ERA_MINTS              = 100_000;
@@ -60,9 +63,9 @@ contract Uniquant is ERC20, IHooks, ReentrancyGuard {
     // epoch (challenge refresh window). TARGET_BLOCKS_PER_MINT = 300 → the
     // retargeting algorithm aims for 1 mint per ~600 s (10 min) on average,
     // Bitcoin-grade slow: ~144 mints/day. With BASE_REWARD = 100 halving every
-    // 100k mints, the 18.9M mining supply needs ~424k mints → full emission
-    // lands around ~8 years (bulk front-loaded into the first few years by the
-    // halving). MAX_MINTS_PER_BLOCK = 1 caps the per-block burst to a single
+    // 100k mints, the 12.6M mining supply needs ~152k mints → full emission
+    // lands around ~3 years (era 0's 10M emits over ~1.9 years, then a short
+    // tail). MAX_MINTS_PER_BLOCK = 1 caps the per-block burst to a single
     // mint, so neither one block nor a flood of parallel miners can sweep
     // emission the way the v1 (>>32 start, 10 per block) allowed — that
     // misconfig let ~1% of supply mint in 10 minutes.
