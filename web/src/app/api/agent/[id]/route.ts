@@ -206,7 +206,7 @@ export async function GET(
     description:
       `${variantName.toUpperCase()}. UQUANT Miner Agent — soulbound ERC-8004 ` +
       "identity attached to the autonomous Uniquant agent registered as " +
-      "**Agent #51672** on the canonical ERC-8004 IdentityRegistry on " +
+      "**Agent #53667** on the canonical ERC-8004 IdentityRegistry on " +
       "Base. The tier badge reflects the holder's live UQUANT balance, " +
       "so the NFT visually upgrades as you accumulate. The variant is " +
       "fixed at mint time, hashed deterministically from the tokenId. " +
@@ -217,7 +217,7 @@ export async function GET(
     background_color: tier.bg,
     // External link points to the agent's 8004scan page (parent identity)
     // so a viewer on OpenSea can jump straight to the registry-level view.
-    external_url: "https://8004scan.io/agents/base/51672",
+    external_url: "https://8004scan.io/agents/base/53667",
     attributes: [
       { trait_type: "Tier", value: tier.name },
       { trait_type: "State", value: variantName },
@@ -240,7 +240,7 @@ export async function GET(
       { trait_type: "Tier Color", value: tier.color },
       // ERC-8004 backlink — every NFT in this collection is owned by the
       // same parent agent on the on-chain ERC-8004 IdentityRegistry.
-      { trait_type: "ERC-8004 Agent", value: "Base #51672" },
+      { trait_type: "ERC-8004 Agent", value: "Base #53667" },
       { trait_type: "Agent Network", value: "Base" },
     ],
   };

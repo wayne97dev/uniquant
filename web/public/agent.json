@@ -90,9 +90,9 @@
       "chain": "base",
       "chainId": 8453,
       "registryAddress": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
-      "agentId": 0,
+      "agentId": 53667,
       "owner": "0x058c453b9D2568438e425199F96E0399Fc780510",
-      "directory": "https://8004scan.io/agents/base/"
+      "directory": "https://8004scan.io/agents/base/53667"
     }
   }
 }
