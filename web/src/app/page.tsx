@@ -88,13 +88,13 @@ export default function Page() {
           <div>
             x:{" "}
             <a
-              href="https://x.com/uniquantbase"
+              href="https://x.com/uniquanterc8004"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline"
               style={{ color: "var(--accent)" }}
             >
-              @uniquantbase
+              @uniquanterc8004
             </a>
           </div>
         </footer>

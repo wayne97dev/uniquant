@@ -15,7 +15,7 @@ pragma solidity ^0.8.26;
    resistant) signatures over that same keccak primitive.
 
    Site: https://uquant8004.com
-   X:    https://x.com/uniquantbase
+   X:    https://x.com/uniquanterc8004
 */
 
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
